@@ -112,36 +112,81 @@ class SortingRobot:
 
             if self.can_move_right():
 
-                # move to next index
+                # move to the right one
                 self.move_right()
 
-                # If my card is greater AND I'm not at the end of the array...
-                if self.compare_item() == 1 and self.can_move_right():
+                # If my card is greater
+                if self.compare_item() == 1:
 
-                    # Move to the right
+                    # Swap - putting the greater card down
+                    self.swap_item()
+
+                    # Move to the left - where None is
+                    self.move_left()
+
+                    # Swap - returning the lower card and picking up None
+                    self.swap_item()
+
+                    # Move back to the right
                     self.move_right()
 
-                # If my card is greater AND I'm at the end of the array...
-                elif self.compare_item() == 1 and self.can_move_right() == False:
-
-                    # swap my item so that the largest is at the end of the array
+                    # Swap - so that None is now being placed back down
                     self.swap_item()
 
-                    # Set the light on to indicate that a swap happened.
+                    # Turn light on to indicate a swap happened
                     self.set_light_on()
 
-                    # then move left until you can't move left anymore.
-                    while self.can_move_left():
-                        self.move_left()
+                # If my card is less than OR if it's the same
+                elif self.compare_item() == -1 or self.compare_item() == 0:
 
-                # If my card is less...
-                elif self.compare_item() == -1:
+                    # Move left - to where None is
+                    self.move_left()
 
-                    # Swap my item
+                    # Swap - returning the smaller card and picking up None
                     self.swap_item()
 
-                    # Set the light on to indicate that a swap happened.
+                    # Move back to the right
+                    self.move_right()
+
+                    # Swap - so that None is now being placed back down
+                    self.swap_item()
+
+                    # Turn light on to indicate a swap happened
                     self.set_light_on()
+
+            # If I can't move right
+            else:
+
+                # If I can't move right, swap - should be swapping the highest card with None
+                self.swap_item()
+
+                # Turn light on to indicate a swap happened
+                self.set_light_on()
+
+                # Move back to the left as far as you can go
+
+
+                # # If my card is greater AND I'm at the end of the array...
+                # elif self.compare_item() == 1 and self.can_move_right() == False:
+
+                #     # swap my item so that the largest is at the end of the array
+                #     self.swap_item()
+
+                #     # Set the light on to indicate that a swap happened.
+                #     self.set_light_on()
+
+                #     # then move left until you can't move left anymore.
+                #     while self.can_move_left():
+                #         self.move_left()
+
+                # # If my card is less...
+                # elif self.compare_item() == -1:
+
+                #     # Swap my item
+                #     self.swap_item()
+
+                #     # Set the light on to indicate that a swap happened.
+                #     self.set_light_on()
 
 
 
@@ -225,7 +270,8 @@ if __name__ == "__main__":
     # with `python robot_sort.py`
 
     # l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
-    l = [4, 5, 2, 3, 7, 6, 9, 1, 10, 8]
+    #l = [4, 5, 2, 3, 7, 6, 9, 1, 10, 8]
+    l = [9, 2, 7, 1]
 
     robot = SortingRobot(l)
 
