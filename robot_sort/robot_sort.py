@@ -154,6 +154,14 @@ class SortingRobot:
                     # Turn light on to indicate a swap happened
                     self.set_light_on()
 
+                # If my card is None, swap
+                elif self.compare_item() == None:
+
+                    self.swap_item()
+
+                    self.set_light_on()
+
+
             # If I can't move right
             else:
 
@@ -166,29 +174,6 @@ class SortingRobot:
                 # Move back to the left as far as you can go
                 while self.can_move_left():
                     self.move_left()
-
-
-                # # If my card is greater AND I'm at the end of the array...
-                # elif self.compare_item() == 1 and self.can_move_right() == False:
-
-                #     # swap my item so that the largest is at the end of the array
-                #     self.swap_item()
-
-                #     # Set the light on to indicate that a swap happened.
-                #     self.set_light_on()
-
-                #     # then move left until you can't move left anymore.
-                #     while self.can_move_left():
-                #         self.move_left()
-
-                # # If my card is less...
-                # elif self.compare_item() == -1:
-
-                #     # Swap my item
-                #     self.swap_item()
-
-                #     # Set the light on to indicate that a swap happened.
-                #     self.set_light_on()
 
 
 
