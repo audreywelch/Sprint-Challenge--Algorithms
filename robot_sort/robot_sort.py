@@ -97,8 +97,70 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        
+        # Keep track of if a swap happened during a pass with the robot's light
+        ## light_on == swap happened
+        set_light_on()
 
+        for each_element in l:
+
+  ## PLAN 
+    """
+    Robot Sort == Bubble Sort
+
+    swap_occurred       -> light_on == true
+    swap                -> pick up item / swap_item
+    if i > i + 1        -> compare to item in front
+
+    ## But how do I first "pick up" an item if I can't access instance variables directly or store any variables
+
+    while light_is_on:
+
+        set_light_off
+
+        for each_element in the array:
+            
+            # pick up an item??
+
+            # can't use len(l) - 1, so before continuing, check that there is another element to the right
+            while can_move_right:
+
+                compare_item -> but if not holding anything, it won't pick it up, and return None
+
+                if each_element > each_element + 1:
+
+                    swap_item()
+
+                    set_light_on()
+
+          SHOOT. Can't access the list.
+
+    ________ starting over ___________________
+
+        while light_is_on:
+
+            set_light_off()
+
+            if can_move_right() == true:
+
+                # This will allow the robot to have an item in his hand
+                swap_item()
+
+                # move to index[1]
+                move_right()
+
+                compare_
+
+                if each_element > each_element + 1:
+
+                    swap_item()
+
+                    set_light_on()
+
+
+
+
+    """
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
@@ -110,3 +172,6 @@ if __name__ == "__main__":
 
     robot.sort()
     print(robot._list)
+
+
+  
