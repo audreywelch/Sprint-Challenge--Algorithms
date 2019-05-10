@@ -97,12 +97,53 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
+
+        # This will allow the robot to have an item in his hand to start with
+        self.swap_item()
         
         # Keep track of if a swap happened during a pass with the robot's light
         ## light_on == swap happened
-        set_light_on()
+        self.set_light_on()
 
-        for each_element in l:
+        while self.light_is_on() == "ON":
+
+            # Swap is false / Light is off unless the following if-statement is triggered
+            self.set_light_off()
+
+            if self.can_move_right() == True:
+
+                # move to next index
+                self.move_right()
+
+                # If my card is greater AND I'm not at the end of the array...
+                if self.compare_item() == 1 and self.can_move_right() == True:
+
+                    # Move to the right
+                    self.move_right()
+
+                # If my card is greater AND I'm at the end of the array...
+                elif self.compare_item() == 1 and self.can_move_right == False:
+
+                    # swap my item so that the largest is at the end of the array
+                    self.swap_item()
+
+                    # Set the light on to indicate that a swap happened.
+                    self.set_light_on()
+
+                    # then move left until you can't move left anymore.
+                    while self.can_move_left() == True:
+                        self.move_left()
+
+                # If my card is less...
+                elif self.compare_item() == -1:
+
+                    # Swap my item
+                    self.swap_item()
+
+                    # Set the light on to indicate that a swap happened.
+                    self.set_light_on()
+
+
 
   ## PLAN 
     """
@@ -137,25 +178,42 @@ class SortingRobot:
 
     ________ starting over ___________________
 
-        while light_is_on:
+        # while light_is_on:
 
-            set_light_off()
+        #     set_light_off()
 
-            if can_move_right() == true:
+        #     if can_move_right() == true:
 
-                # This will allow the robot to have an item in his hand
-                swap_item()
+        #         # This will allow the robot to have an item in his hand
+        #         swap_item()
 
-                # move to index[1]
-                move_right()
+        #         # if move right == true:
 
-                compare_
+        #             # move to index[1]
+        #             move_right()
 
-                if each_element > each_element + 1:
+        #         ## Check if MY card is greater
+        #         # If yes,
+        #             # if move right == true:
+        #                 # move right
+        #                 # If can't move right anymore, swap because that means i have the greatest number
+        #         # if no, swap them
 
-                    swap_item()
+        #         #then move left until you can't move left anymore.
 
-                    set_light_on()
+        #         # then if light is on, because you swapped, repeat
+
+
+
+
+                if compare_item() == 1:
+
+
+
+                    # If the held item's value is greater, return 1.
+                    # If the held item's value is less, return -1.
+                    # If the held item's value is equal, return 0.
+
 
 
 
@@ -166,7 +224,8 @@ if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
 
-    l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
+    # l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
+    l = [4, 5, 2, 3, 7, 6, 9, 1, 10, 8]
 
     robot = SortingRobot(l)
 
