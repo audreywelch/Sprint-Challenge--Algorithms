@@ -164,6 +164,8 @@ class SortingRobot:
                 self.set_light_on()
 
                 # Move back to the left as far as you can go
+                while self.can_move_left():
+                    self.move_left()
 
 
                 # # If my card is greater AND I'm at the end of the array...
