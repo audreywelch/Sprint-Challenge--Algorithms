@@ -105,24 +105,24 @@ class SortingRobot:
         ## light_on == swap happened
         self.set_light_on()
 
-        while self.light_is_on() == "ON":
+        while self.light_is_on():
 
             # Swap is false / Light is off unless the following if-statement is triggered
             self.set_light_off()
 
-            if self.can_move_right() == True:
+            if self.can_move_right():
 
                 # move to next index
                 self.move_right()
 
                 # If my card is greater AND I'm not at the end of the array...
-                if self.compare_item() == 1 and self.can_move_right() == True:
+                if self.compare_item() == 1 and self.can_move_right():
 
                     # Move to the right
                     self.move_right()
 
                 # If my card is greater AND I'm at the end of the array...
-                elif self.compare_item() == 1 and self.can_move_right == False:
+                elif self.compare_item() == 1 and self.can_move_right() == False:
 
                     # swap my item so that the largest is at the end of the array
                     self.swap_item()
@@ -131,7 +131,7 @@ class SortingRobot:
                     self.set_light_on()
 
                     # then move left until you can't move left anymore.
-                    while self.can_move_left() == True:
+                    while self.can_move_left():
                         self.move_left()
 
                 # If my card is less...
